@@ -15,7 +15,7 @@ def write_process(name: str, shm: SharedMemory):
 
 def main(num_reader: int, num_writer: int):
     sh_memory = SharedMemory(65)
-    for i in range(1, num_reader: + 1):
+    for i in range(1, num_reader + 1):
         name = f"Reader {i}"
         rproc = Process(target=read_process, args=(name, sh_memory))
         rproc.start()
