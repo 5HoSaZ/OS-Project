@@ -23,7 +23,7 @@ void shmwrite(int shmid, char *str)
 char *shmread(int shmid)
 {
     char *stored = (char *)shmat(shmid, NULL, 0);
-    char *str = (char *)malloc(sizeof(char *));
+    char *str = (char *)malloc(SHM_SIZE);
     str = strcpy(str, stored);
     shmdt(stored);
     return str;
