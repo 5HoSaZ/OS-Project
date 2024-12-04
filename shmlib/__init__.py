@@ -25,8 +25,8 @@ shmremove.restype = C.c_int
 class SharedMemory:
     """Shared memory class built from ctypes."""
 
-    def __init__(self, id: int):
-        self.__shmid = shmgen(id)
+    def __init__(self, shmid: int):
+        self.__shmid = shmgen(shmid)
 
     def read(self) -> str:
         """Read text from shared memory."""
