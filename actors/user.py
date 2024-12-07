@@ -40,7 +40,7 @@ class User(tk.Tk):
     def __on_closing(self):
         message = f"{self.name} has exited!"
         print(message)
-        self.monitor.user_exit(message)
+        self.monitor.signal_user_exit(message)
         self.destroy()
 
     def __on_send_button_clicked(self):

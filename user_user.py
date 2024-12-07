@@ -24,12 +24,12 @@ class Monitor:
             for event in self.read_events:
                 event.set()
 
-    def user_exit(self, exit_text: str):
+    def signal_user_exit(self, exit_text: str):
         # Exit only when write lock is on
         self.write_lock.acquire()
         self.num_users.value -= 1
-        self.write_lock.release()
-        self.shm_write(exit_text)
+        self.shm.write(exit_text)
+        self.signal_new_msg()
 
     def shm_read(self) -> str:
         with self.counter.get_lock():
