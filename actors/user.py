@@ -8,11 +8,12 @@ class User(tk.Tk):
         super().__init__()
         self.title(name)
         self.name = name
-        self.input_line = tk.Entry(self)
+        self.geometry("250x200")
+        self.input_line = tk.Entry(self, width=40)
         self.scroll_text = st.ScrolledText(
             self,
-            width=30,
-            height=8,
+            width=50,
+            height=11,
             font=("Times New Roman", 15),
         )
         self.send_button = tk.Button(
