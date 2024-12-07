@@ -27,8 +27,7 @@ class Monitor:
     def user_exit(self, exit_text: str):
         # Exit only when write lock is on
         self.write_lock.acquire()
-        with self.num_users.get_lock():
-            self.num_users.value -= 1
+        self.num_users.value -= 1
         self.write_lock.release()
         self.shm_write(exit_text)
 
