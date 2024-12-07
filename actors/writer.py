@@ -4,7 +4,7 @@ import time
 
 class Writer(tk.Tk):
 
-    def __init__(self, name: str, shared_memory):
+    def __init__(self, name: str, shared_memory, write_lock):
         super().__init__()
         self.title(name)
         self.geometry("200x100")
@@ -17,14 +17,17 @@ class Writer(tk.Tk):
             command=self.__on_write_button_clicked,
         )
         self.shm = shared_memory
+        self.write_lock = write_lock
 
     def __on_write_button_clicked(self):
         text = self.input_line.get()
         if text:
+            self.write_lock.acquire()
             self.write_button.config(state=tk.DISABLED)
             self.input_line.delete(0, "end")
             self.shm.write(text)
-            time.sleep(0.3)
+            time.sleep(1)
+            self.write_lock.release()
             self.write_button.config(state=tk.NORMAL)
 
     def mainloop(self, n=0):

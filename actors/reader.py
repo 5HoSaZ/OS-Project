@@ -21,7 +21,7 @@ class Reader(tk.Tk):
     def __on_read_button_clicked(self):
         self.read_button.config(state=tk.DISABLED)
         text = self.shm.read()
-        time.sleep(0.3)
+        time.sleep(0.1)
         text = text if text else "<<None>>"
         self.output_line.config(text=text)
         self.read_button.config(state=tk.NORMAL)
