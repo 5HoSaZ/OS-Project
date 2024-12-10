@@ -1,8 +1,10 @@
+import os
 import ctypes as C
 from ctypes import CDLL
 
 # Import C-defined functions in shmlib shared object
-shmlib = CDLL("./shmlib/shmlib.so")
+__path = os.path.join(os.path.dirname(__file__), "shmlib.so")
+shmlib = CDLL(__path)
 
 # Redefines function in Python
 shmgen = shmlib.shmgen
